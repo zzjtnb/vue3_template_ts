@@ -1,3 +1,4 @@
+
 <script setup lang="ts">
 import HelloWorld from '@/components/HelloWorld.vue';
 import { RouterLink, RouterView } from 'vue-router';
@@ -52,11 +53,10 @@ a,
 }
 
 nav {
-    text-align: center;
   width: 100%;
   margin-top: 2rem;
   font-size: 12px;
-
+  text-align: center;
 }
 
 nav a.router-link-exact-active {
