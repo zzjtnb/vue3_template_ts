@@ -1,0 +1,19 @@
+# 其他类型文件
+
+*.js
+*.ts
+*.jpg
+*.png
+*.gif
+*.svg
+*.md
+*.json
+*.woff
+
+# 测试和打包目录
+
+.history
+.cache
+.vscode
+dist
+node_modules

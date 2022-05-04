@@ -1,16 +1,82 @@
 {
   "compilerOptions": {
+    // 设置baseUrl来告诉编译器到哪里去查找模块。 所有非相对模块导入都会被当做相对于 baseUrl。
+    "baseUrl": ".",
+    // ts的编译的ECMAScript目标版本
     "target": "esnext",
     "useDefineForClassFields": true,
+    // 指定生成哪个模块系统代码
     "module": "esnext",
+    // 模块的解析 node的模块解析方式
     "moduleResolution": "node",
+    // 启用所有严格类型检查选项。
+    // 启用--strict相当于启用--noImplicitAny,--noImplicitThis,--alwaysStrict，
+    // --strictNullChecks和--strictFunctionTypes和--strictPropertyInitialization。
     "strict": true,
+    // 使用的jsx 是转化成怎么的表现形式
     "jsx": "preserve",
+    // 打包后是否使用资源地图
     "sourceMap": true,
+    // 是否支持使用import 来导入json文件
     "resolveJsonModule": true,
+    // 每一个文件是否单独编译成一个文件,这个在开发阶段很重要,生产环境设置成false
+    // 因为vite是基于每一个文件的改变来进行热更新,如果不开启这个选项,ts 改变后不会自动热更新
+    "isolatedModules": true,
+    // 是否启动模块化与非模块化的文件的交互
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"]
+    // 编译过程中需要引入的库文件的列表
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    // 忽略所有的声明文件（ *.d.ts）的类型检查。
+    "skipLibCheck": true,
+    // 作用：模块名到基于 baseUrl的路径映射的列表。
+    // 请注意"paths"是相对于"baseUrl"进行解析。
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "views/*": [
+        "src/views/*"
+      ],
+      "components/*": [
+        "src/components/*"
+      ],
+      "assets/*": [
+        "src/assets/*"
+      ]
+    },
+    //  作用：添加要包含的类型声明文件名列表，只有在这里列出的模块的声明文件才会被加载进来
+    // 可以将 vite/client 添加到 types中，这会提供以下类型定义补充：
+    //     资源导入 (例如：导入一个 .svg 文件)
+    // import.meta.env 上 Vite 注入的环境变量的类型定义
+    // import.meta.hot 上的 HMR API 类型定义
+    "types": [
+      "node",
+      "vite/client",
+      "element-plus/global"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  // 指定需要编译的代码目录和文件后缀名
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
+  // 将第三方依赖包、打包后的静态文件都排除在外。
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.vite-config.json"
+    }
+  ]
 }

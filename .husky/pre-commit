@@ -1,9 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# 该文件在commit的时候触发
-# npm run lint
-# 根据 config/lintstagedrc.js 对暂存的 Git 文件执行格式化并提交代码
-pnpm lint:lint-staged
-# 对暂存的 Git 文件执行格式化并提交代码
-pnpm lint:pretty
+pnpm lint:staged

@@ -1,21 +1,116 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from "./components/HelloWorld.vue";
+import HelloWorld from '@/components/HelloWorld.vue';
+import { RouterLink, RouterView } from 'vue-router';
 </script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
-</template>
+  <header>
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+      </nav>
+    </div>
+  </header>
+
+  <RouterView />
+</template>
 <style>
+@import "@/assets/base.css";
+
 #app {
-  margin-top: 60px;
-  color: #2c3e50;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  max-width: 1280px;
+  padding: 2rem;
+  margin: 0 auto;
+  font-weight: normal;
+}
+
+header {
+  max-height: 100vh;
+  line-height: 1.5;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+a,
+.green {
+  color: hsl(160deg 100% 37% / 100%);
+  text-decoration: none;
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsl(160deg 100% 37% / 20%);
+  }
+}
+
+nav {
+    text-align: center;
+  width: 100%;
+  margin-top: 2rem;
+  font-size: 12px;
+
+}
+
+nav a.router-link-exact-active {
+  color: var(--color-text);
+}
+
+nav a.router-link-exact-active:hover {
+  background-color: transparent;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0 1rem;
+  border-left: 1px solid var(--color-border);
+}
+
+nav a:first-of-type {
+  border: 0;
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    padding: 0 2rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  header {
+    display: flex;
+    padding-right: calc(var(--section-gap) / 2);
+    place-items: center;
+  }
+
+  header .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    place-items: flex-start;
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  nav {
+    padding: 1rem 0;
+    margin-top: 1rem;
+    margin-left: -1rem;
+    font-size: 1rem;
+    text-align: left;
+  }
 }
 </style>

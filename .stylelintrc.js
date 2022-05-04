@@ -1,17 +1,16 @@
 module.exports = {
-  extends: [
-    "stylelint-config-standard-scss",
-    "stylelint-config-recommended-vue/scss",
-    "stylelint-config-idiomatic-order",
-    "stylelint-config-prettier",
-  ],
-  ignoreFiles: ["./src/assets/styles/element/element-variables.scss"],
+  extends: ['stylelint-config-standard-scss', 'stylelint-config-idiomatic-order'],
   rules: {
-    "selector-pseudo-class-no-unknown": [
-      true,
-      {
-        ignorePseudoClasses: ["deep"],
-      },
-    ],
+    'max-line-length': [120, {ignore: ['non-comments']}],
   },
+  overrides: [
+    {
+      files: ['**/*.(scss|css)'],
+      customSyntax: 'postcss-scss',
+    },
+    {
+      files: ['**/*.(html|vue)'],
+      customSyntax: 'postcss-html',
+    },
+  ],
 };
