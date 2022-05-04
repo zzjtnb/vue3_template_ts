@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     // 设置baseUrl来告诉编译器到哪里去查找模块。 所有非相对模块导入都会被当做相对于 baseUrl。
-    "baseUrl": ".",
+    "baseUrl": "./",
     // ts的编译的ECMAScript目标版本
     "target": "esnext",
     "useDefineForClassFields": true,
@@ -37,19 +37,34 @@
       "@/*": [
         "src/*"
       ],
-      "views/*": [
-        "src/views/*"
+      "api/*": [
+        "src/api/*"
+      ],
+      "config/*": [
+        "src/config/*"
+      ],
+      "assets/*": [
+        "src/assets/*"
       ],
       "components/*": [
         "src/components/*"
       ],
-      "assets/*": [
-        "src/assets/*"
-      ]
+      "store/*": [
+        "src/utils/*"
+      ],
+      "router/*": [
+        "src/utils/*"
+      ],
+      "utils/*": [
+        "src/utils/*"
+      ],
+      "views/*": [
+        "src/views/*"
+      ],
     },
-    //  作用：添加要包含的类型声明文件名列表，只有在这里列出的模块的声明文件才会被加载进来
+    // 作用：添加要包含的类型声明文件名列表，只有在这里列出的模块的声明文件才会被加载进来
     // 可以将 vite/client 添加到 types中，这会提供以下类型定义补充：
-    //     资源导入 (例如：导入一个 .svg 文件)
+    // 资源导入 (例如：导入一个 .svg 文件)
     // import.meta.env 上 Vite 注入的环境变量的类型定义
     // import.meta.hot 上的 HMR API 类型定义
     "types": [
@@ -67,7 +82,8 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "types/*.d.ts",
   ],
   // 将第三方依赖包、打包后的静态文件都排除在外。
   "exclude": [
@@ -76,7 +92,7 @@
   ],
   "references": [
     {
-      "path": "./tsconfig.vite-config.json"
+      "path": "./tsconfig.vite.json"
     }
   ]
 }

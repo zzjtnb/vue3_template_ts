@@ -1,7 +1,21 @@
 
 <script setup lang="ts">
 import HelloWorld from '@/components/HelloWorld.vue';
-import { RouterLink, RouterView } from 'vue-router';
+import { useUserStore } from '@/stores/user';
+const userStore = useUserStore();
+const names = computed(() => userStore.name);
+// state 也可以使用解构，但使用解构会使其失去响应式，这时候可以用 pinia 的 storeToRefs。
+// import {storeToRefs} from 'pinia';
+const { name } = storeToRefs(userStore);
+function changeNamme() {
+  // 直接修改 state
+  userStore.name = '李四';
+  // 一般不建议这么做，建议通过 actions 去修改 state，action 里可以直接通过 this 访问
+  console.log('三秒钟后会变成王五');
+  setTimeout(() => {
+    userStore.updateName('王五');
+  }, 3000);
+}
 </script>
 <template>
   <header>
@@ -16,7 +30,15 @@ import { RouterLink, RouterView } from 'vue-router';
       </nav>
     </div>
   </header>
+  <div>
+    <el-button type="primary">Info</el-button>
+    <div>
+      {{ userStore.name }}|{{ name }}||{{ names }}|{{ userStore.fullName }}
 
+      <el-button @click="changeNamme">修改name</el-button>
+    </div>
+    <div />
+  </div>
   <RouterView />
 </template>
 <style>

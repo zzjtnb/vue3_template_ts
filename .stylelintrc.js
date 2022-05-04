@@ -1,7 +1,8 @@
 module.exports = {
   extends: ['stylelint-config-standard-scss', 'stylelint-config-idiomatic-order'],
   rules: {
-    'max-line-length': [120, {ignore: ['non-comments']}],
+    'max-line-length': [120, { ignore: ['non-comments'] }],
+    'scss/dollar-variable-pattern': [/^--/, { ignore: 'global' }],
   },
   overrides: [
     {
