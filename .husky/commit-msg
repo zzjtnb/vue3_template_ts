@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+#检测commit的message时触发
+npx --no -- commitlint --edit "$1"

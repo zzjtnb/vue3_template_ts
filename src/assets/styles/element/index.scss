@@ -1,0 +1,22 @@
+$custom-colors: ();
+
+// @use 'element-plus/theme-chalk/src/mixins/mixins' as *;
+// @use '~element-plus/theme-chalk/src/mixins/utils' as *;
+// @use '~element-plus/theme-chalk/src/mixins/var' as *;
+// @use '~element-plus/theme-chalk/src/common/var' as *;
+// @use '~element-plus/theme-chalk/src/common/popup' as *;
+
+/* just override what you need */
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: $custom-colors
+);
+
+// @forward 'element-plus/theme-chalk/src/mixins/config.scss' with (
+//   $namespace: 'ep'
+// );
+
+@import './variable';
+@import './custom';
+
+// 您可以对其进行注释以隐藏调试信息。
+// @debug $--colors;
