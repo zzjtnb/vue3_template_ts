@@ -15,7 +15,7 @@
     "lint:stylelint": "stylelint --fix \"**/**/*.(css|scss|vue|html)\" ",
     "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
     "lint": "pnpm lint:eslint && pnpm lint:stylelint",
-    "commit": "git-cz"
+    "commit": "git cz"
   },
   "engines": {
     "node": ">= 16",
@@ -26,14 +26,6 @@
     "not ie 11",
     "not op_mini all"
   ],
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-customizable"
-    },
-    "cz-customizable": {
-      "config": ".husky/cz-config.js"
-    }
-  },
   "dependencies": {
     "@vueuse/core": "^9.4.0",
     "axios": "^1.1.3",
@@ -47,7 +39,6 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
-    "@commitlint/config-conventional": "^17.2.0",
     "@iconify-json/ep": "^1.1.8",
     "@iconify-json/noto": "^1.1.5",
     "@playwright/test": "^1.27.1",
@@ -57,9 +48,6 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "@vue/test-utils": "^2.2.1",
     "@vue/tsconfig": "^0.1.3",
-    "commitizen": "^4.2.5",
-    "commitlint-config-cz": "^0.13.3",
-    "cz-customizable": "^7.0.0",
     "eslint": "^8.26.0",
     "eslint-config-zzjtnb": "^0.0.2",
     "eslint-define-config": "^1.11.0",
