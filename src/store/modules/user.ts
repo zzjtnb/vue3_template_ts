@@ -1,7 +1,7 @@
-import {defineStore} from 'pinia';
-import {ElMessage} from 'element-plus';
+import { defineStore } from 'pinia'
+import { ElMessage } from 'element-plus'
 
-const user = JSON.parse(localStorage.getItem('user') || '{}');
+const user = JSON.parse(localStorage.getItem('user') || '{}')
 
 export const useUserStore = defineStore({
   id: 'user',
@@ -14,23 +14,23 @@ export const useUserStore = defineStore({
   }),
   getters: {
     getToken(): any {
-      return `Bearer ${this.token}`;
+      return `Bearer ${this.token}`
     },
   },
   actions: {
     TOGGLE_NAME(name: string) {
-      this.name = name;
-      ElMessage.info(name);
+      this.name = name
+      ElMessage.info(name)
     },
   },
   persist: {
     enabled: true,
     strategies: [
       {
-        /*default:store.$id*/
+        /* default:store.$id */
         // key: 'user',
 
-        /*default:sessionStorage*/
+        /* default:sessionStorage */
         storage: localStorage,
 
         /**
@@ -41,8 +41,8 @@ export const useUserStore = defineStore({
       },
     ],
   },
-});
-export default useUserStore;
+})
+export default useUserStore
 // Need to be used outside the setup
 // 这里的pinia 即为通过createPinia()生成并在入口处传递给app实例的pinia实例,在此手动注入并暴露
 // import {pinia} from '@/store';

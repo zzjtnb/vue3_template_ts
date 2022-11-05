@@ -7,6 +7,6 @@ const httpCode: httpCodeType = {
   501: '服务器不支持该请求中使用的方法',
   502: '网关错误',
   504: '网关超时',
-};
+}
 
-export default httpCode;
+export default httpCode

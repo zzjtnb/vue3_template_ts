@@ -1,8 +1,8 @@
-const store = JSON.parse(localStorage.getItem('user') || '{}');
+import { getLanguage, loadLanguages } from '@/utils/language'
 
-import {loadLanguages, getLanguage} from '@/utils/language';
-const context = import.meta.glob('./locales/*.ts', {eager: true});
-const messages = loadLanguages(context);
+const store = JSON.parse(localStorage.getItem('user') || '{}')
+const context = import.meta.glob('./locales/*.ts', { eager: true })
+const messages = loadLanguages(context)
 
 // import {useLocaleStore} from '../../store/local';
 // console.log(useLocaleStore().locale);
@@ -10,14 +10,14 @@ const messages = loadLanguages(context);
 const options = {
   // you must set `false`, to use Composition API
   legacy: false,
-  //隐含注入的属性和函数
+  // 隐含注入的属性和函数
   globalInjection: true,
   // 设置地区
   locale: store.locale ?? getLanguage(messages),
   // 回退本地化(选择首选语言缺少翻译时要使用的语言)
   fallbackLocale: 'en-US',
   // 设置地区信息
-  messages: messages,
+  messages,
   datetimeFormats: {
     'zh-CN': {
       short: {
@@ -54,6 +54,6 @@ const options = {
       },
     },
   },
-};
+}
 
-export default options;
+export default options

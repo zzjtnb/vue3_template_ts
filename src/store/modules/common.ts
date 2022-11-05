@@ -1,5 +1,5 @@
-import {defineStore} from 'pinia';
-import dayjs from 'dayjs';
+import { defineStore } from 'pinia'
+import dayjs from 'dayjs'
 
 const useCommonStore = defineStore({
   id: 'common',
@@ -9,6 +9,6 @@ const useCommonStore = defineStore({
     quarter: dayjs().subtract(90, 'days').format('YYYY-MM-DD'),
   }),
   actions: {},
-});
+})
 
-export default useCommonStore;
+export default useCommonStore

@@ -1,4 +1,4 @@
-import Layout from '@/layout/Index.vue';
+import Layout from '@/layout/Index.vue'
 
 const routes = [
   {
@@ -9,17 +9,17 @@ const routes = [
       {
         path: '/',
         name: 'home',
-        meta: {title: '首页', icon: 'index'},
+        meta: { title: '首页', icon: 'index' },
         component: () => import('@/views/Home.vue'),
       },
       {
         path: '/test',
         name: 'test',
-        meta: {title: '测试', icon: 'test'},
+        meta: { title: '测试', icon: 'test' },
         component: () => import('@/views/test/Index.vue'),
       },
     ],
   },
-];
+]
 
-export default routes;
+export default routes

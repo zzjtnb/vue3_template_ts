@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import Language from './Language.vue';
+import Language from './Language.vue'
 </script>
+
 <template>
   <nav>
     <div class="right">

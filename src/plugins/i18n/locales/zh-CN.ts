@@ -11,4 +11,4 @@ export default {
     timeout: '请求超时或服务器异常',
     error: '服务器异常,请联系管理员!',
   },
-};
+}

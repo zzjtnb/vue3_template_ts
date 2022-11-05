@@ -11,4 +11,4 @@ export default {
     timeout: 'Request timeout or server exception',
     error: 'Server error, please contact administrator!',
   },
-};
+}

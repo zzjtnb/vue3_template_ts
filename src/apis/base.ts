@@ -4,6 +4,6 @@
 const base = {
   dev: '/api',
   // dev: 'http://localhost:3001',
-};
+}
 
-export default base;
+export default base

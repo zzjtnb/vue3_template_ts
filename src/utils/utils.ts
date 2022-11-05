@@ -1,5 +1,5 @@
-//只获取文件名
-export const getName = (path: string) => path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'));
+// 只获取文件名
+export const getName = (path: string) => path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'))
 
 /**
  * 获取指定范围内的随机数, decimalNum指小数保留多少位
@@ -9,17 +9,25 @@ export const getName = (path: string) => path.substring(path.lastIndexOf('/') + 
  * @returns
  */
 export function randomNum(maxNum: number, minNum: number, decimalNum = 0): number {
-  let [max, min] = [0, 0];
-  minNum <= maxNum ? ((min = minNum), (max = maxNum)) : ((min = maxNum), (max = minNum));
+  let [max, min] = [0, 0]
+  if (minNum <= maxNum) {
+    min = minNum
+    max = maxNum
+  }
+  else {
+    min = maxNum
+    max = minNum
+  }
+
   switch (arguments.length) {
     case 1:
-      return Math.floor(Math.random() * (max + 1));
+      return Math.floor(Math.random() * (max + 1))
     case 2:
-      return Math.floor(Math.random() * (max - min + 1) + min);
+      return Math.floor(Math.random() * (max - min + 1) + min)
     case 3:
-      return Number((Math.random() * (max - min) + min).toFixed(decimalNum));
+      return Number((Math.random() * (max - min) + min).toFixed(decimalNum))
     default:
-      return Math.random();
+      return Math.random()
   }
 }
 /**
@@ -29,14 +37,14 @@ export function randomNum(maxNum: number, minNum: number, decimalNum = 0): numbe
  * @returns
  */
 export function fomatFloat(value: number, n: number) {
-  const f = Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
-  let s = f.toString();
-  const rs = s.indexOf('.');
-  if (rs < 0) {
-    s += '.';
-  }
-  for (let i = s.length - s.indexOf('.'); i <= n; i++) {
-    s += '0';
-  }
-  return s;
+  const f = Math.round(value * 10 ** n) / 10 ** n
+  let s = f.toString()
+  const rs = s.indexOf('.')
+  if (rs < 0)
+    s += '.'
+
+  for (let i = s.length - s.indexOf('.'); i <= n; i++)
+    s += '0'
+
+  return s
 }

@@ -8,14 +8,15 @@ const props = defineProps({
     type: String,
     default: '',
   },
-});
-console.log(props.title);
+})
+// console.log(props.title)
 // const {proxy} = getCurrentInstance() as any;
 // function closeDialog() {
 //   proxy.$emit('closeLive', false);
 // }
 // const emit = defineEmits(['closeLive']);
 </script>
+
 <template>
   <div v-drag="['.drag .el-dialog', '.drag .el-dialog__header']" class="drag">
     <!-- <el-dialog v-model="isShow" width="310px" center :modal="false" :close-on-click-modal="false" :title="title" @close="closeDialog">
@@ -23,6 +24,7 @@ console.log(props.title);
     </el-dialog> -->
   </div>
 </template>
+
 <style lang="scss" scoped>
 @media screen and (min-width: 621px) {
   ::-webkit-scrollbar {

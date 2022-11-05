@@ -1,24 +1,24 @@
-import {fileURLToPath, URL} from 'node:url';
+import { URL, fileURLToPath } from 'node:url'
 
-import {defineConfig} from 'vite';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
 // 图标
-import Icons from 'unplugin-icons/vite';
-import IconsResolver from 'unplugin-icons/resolver';
-//自动导入
-import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+// 自动导入
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
 
-import {ElementPlusResolver} from 'unplugin-vue-components/resolvers';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-import viteCompression from 'vite-plugin-compression';
-import legacy from '@vitejs/plugin-legacy';
+import viteCompression from 'vite-plugin-compression'
+import legacy from '@vitejs/plugin-legacy'
 
-import Inspect from 'vite-plugin-inspect';
+import Inspect from 'vite-plugin-inspect'
 
 // 当前执行node命令时文件夹的地址(工作目录)
-const root: string = process.cwd();
+const root: string = process.cwd()
 
 // import {resolve} from 'path';
 // // 路径查找
@@ -41,18 +41,18 @@ export default defineConfig({
   //   },
   // },
   base: './',
-  root: root,
+  root,
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      //解决开发环境下的警告
+      // 解决开发环境下的警告
       'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
     },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "@/assets/styles/element/index.scss" as *;`,
+        additionalData: '@use "@/assets/styles/element/index.scss" as *;',
       },
     },
   },
@@ -68,7 +68,7 @@ export default defineConfig({
       '/api': {
         target: 'http://www.github.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: path => path.replace(/^\/api/, ''),
       },
     },
   },
@@ -98,7 +98,7 @@ export default defineConfig({
         }),
         // Auto import functions from Element Plus, e.g. ElMessage, ElMessageBox... (with style)
         // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
-        ElementPlusResolver({importStyle: 'sass'}),
+        ElementPlusResolver({ importStyle: 'sass' }),
       ],
       imports: [
         // Auto import functions from Vue, e.g. ref, reactive, toRef...
@@ -137,25 +137,25 @@ export default defineConfig({
         }),
         // Auto register Element Plus components
         // 自动导入 Element Plus 组件
-        ElementPlusResolver({importStyle: 'sass'}),
+        ElementPlusResolver({ importStyle: 'sass' }),
       ],
-      //用于搜索组件的目录的相对路径。
+      // 用于搜索组件的目录的相对路径。
       dirs: ['src/components/auto', 'src/assets/svg'],
-      //组件的有效文件扩展名
+      // 组件的有效文件扩展名
       extensions: ['vue', 'svg', 'ts'],
-      //搜索子目录
+      // 搜索子目录
       deep: true,
-      //生成`components.d.ts` 全局声明文件
+      // 生成`components.d.ts` 全局声明文件
       dts: 'types/components.d.ts',
-      //指令的自动导入
-      //默认值:Vue 3 的`true`,Vue 2 的`false`
+      // 指令的自动导入
+      // 默认值:Vue 3 的`true`,Vue 2 的`false`
       directives: true,
-      //允许子目录作为组件的命名空间前缀
+      // 允许子目录作为组件的命名空间前缀
       directoryAsNamespace: false,
       // 忽略命名空间前缀的子目录路径
       // 当`directoryAsNamespace: true` 时有效
       globalNamespaces: [],
-      //用于转换目标的过滤器
+      // 用于转换目标的过滤器
       include: [/\.vue$/, /\.vue\?vue/, /\.svg$/],
       exclude: ['src/components/exclude'],
     }),
@@ -181,7 +181,7 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        //生产环境时移除console
+        // 生产环境时移除console
         drop_console: true,
         drop_debugger: true,
       },
@@ -192,4 +192,4 @@ export default defineConfig({
   define: {
     __INTLIFY_PROD_DEVTOOLS__: false,
   },
-});
+})

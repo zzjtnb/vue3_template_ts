@@ -1,18 +1,18 @@
-import {createPinia} from 'pinia';
-import piniaPluginPersist from 'pinia-plugin-persist';
+import { createPinia } from 'pinia'
+import piniaPluginPersist from 'pinia-plugin-persist'
 
-const pinia = createPinia();
-pinia.use(piniaPluginPersist);
+import useCommonStore from './modules/common'
+import useUserStore from './modules/user'
 
-export {pinia};
+const pinia = createPinia()
+pinia.use(piniaPluginPersist)
 
-import useCommonStore from './modules/common';
-import useUserStore from './modules/user';
+export { pinia }
 
 // 统一导出useStore方法
 export default function useStore() {
   return {
     common: useCommonStore(),
     user: useUserStore(),
-  };
+  }
 }

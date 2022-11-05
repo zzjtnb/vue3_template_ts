@@ -1,4 +1,4 @@
-import type {App} from 'vue';
+import type { App } from 'vue'
 
 /**
  * 自定义拖动指令
@@ -10,49 +10,50 @@ import type {App} from 'vue';
 export default function dragDirective(app: App) {
   app.directive('drag', {
     mounted(el, binding) {
-      if (!binding.value) return false;
+      if (!binding.value) return false
 
-      const dragDom = document.querySelector(binding.value[0]) as HTMLElement;
-      const dragHeader = document.querySelector(binding.value[1]) as HTMLElement;
+      const dragDom = document.querySelector(binding.value[0]) as HTMLElement
+      const dragHeader = document.querySelector(binding.value[1]) as HTMLElement
 
-      dragHeader.onmouseover = () => (dragHeader.style.cursor = `grab`);
+      dragHeader.onmouseover = () => (dragHeader.style.cursor = 'grab')
 
       function down(e: any, type: string) {
-        const transform = getComputedStyle(dragDom).transform;
+        const transform = getComputedStyle(dragDom).transform
         // body当前宽度
-        const screenWidth = document.body.clientWidth;
+        const screenWidth = document.body.clientWidth
         // 可见区域高度(应为body高度，可某些环境下无法获取)
-        const screenHeight = document.documentElement.clientHeight;
+        const screenHeight = document.documentElement.clientHeight
         // 对话框宽度
-        const dragDomWidth = dragDom.offsetWidth;
+        const dragDomWidth = dragDom.offsetWidth
         // 对话框高度
-        const dragDomheight = dragDom.offsetHeight;
+        const dragDomheight = dragDom.offsetHeight
 
         // 鼠标按下，计算当前元素距离可视区的距离
-        let disX = type === 'pc' ? e.clientX - dragHeader.offsetLeft : e.touches[0].clientX - dragHeader.offsetLeft;
-        let disY = type === 'pc' ? e.clientY - dragHeader.offsetTop : e.touches[0].clientY - dragHeader.offsetTop;
+        let disX = type === 'pc' ? e.clientX - dragHeader.offsetLeft : e.touches[0].clientX - dragHeader.offsetLeft
+        let disY = type === 'pc' ? e.clientY - dragHeader.offsetTop : e.touches[0].clientY - dragHeader.offsetTop
         if (transform !== 'none') {
-          disX += screenWidth / 4;
-          disY += screenHeight / 4;
+          disX += screenWidth / 4
+          disY += screenHeight / 4
         }
 
-        const minDragDomLeft = dragDom.offsetLeft;
-        const maxDragDomLeft = screenWidth - dragDom.offsetLeft - dragDomWidth;
+        const minDragDomLeft = dragDom.offsetLeft
+        const maxDragDomLeft = screenWidth - dragDom.offsetLeft - dragDomWidth
 
-        const minDragDomTop = dragDom.offsetTop;
-        const maxDragDomTop = screenHeight - dragDom.offsetTop - dragDomheight;
+        const minDragDomTop = dragDom.offsetTop
+        const maxDragDomTop = screenHeight - dragDom.offsetTop - dragDomheight
 
         // 获取到的值带px 正则匹配替换
-        let styL: any = getComputedStyle(dragDom).left;
-        let styT: any = getComputedStyle(dragDom).top;
+        let styL: any = getComputedStyle(dragDom).left
+        let styT: any = getComputedStyle(dragDom).top
 
         // 注意在ie中 第一次获取到的值为组件自带50% 移动之后赋值为px
         if (styL.includes('%')) {
-          styL = +document.body.clientWidth * (+styL.replace(/\%/g, '') / 100);
-          styT = +document.body.clientHeight * (+styT.replace(/\%/g, '') / 100);
-        } else {
-          styL = +styL.replace(/\px/g, '');
-          styT = +styT.replace(/\px/g, '');
+          styL = +document.body.clientWidth * (+styL.replace(/\%/g, '') / 100)
+          styT = +document.body.clientHeight * (+styT.replace(/\%/g, '') / 100)
+        }
+        else {
+          styL = +styL.replace(/\px/g, '')
+          styT = +styT.replace(/\px/g, '')
         }
 
         return {
@@ -64,32 +65,30 @@ export default function dragDirective(app: App) {
           maxDragDomTop,
           styL,
           styT,
-        };
+        }
       }
 
       function move(e: any, type: string, obj: any) {
-        dragDom.style.transform = 'none';
-        const {disX, disY, minDragDomLeft, maxDragDomLeft, minDragDomTop, maxDragDomTop, styL, styT} = obj;
+        dragDom.style.transform = 'none'
+        const { disX, disY, minDragDomLeft, maxDragDomLeft, minDragDomTop, maxDragDomTop, styL, styT } = obj
 
         // 通过事件委托，计算移动的距离
-        let left = type === 'pc' ? e.clientX - disX : e.touches[0].clientX - disX;
-        let top = type === 'pc' ? e.clientY - disY : e.touches[0].clientY - disY;
+        let left = type === 'pc' ? e.clientX - disX : e.touches[0].clientX - disX
+        let top = type === 'pc' ? e.clientY - disY : e.touches[0].clientY - disY
 
         // 边界处理
-        if (-left > minDragDomLeft) {
-          left = -minDragDomLeft;
-        } else if (left > maxDragDomLeft) {
-          left = maxDragDomLeft;
-        }
+        if (-left > minDragDomLeft)
+          left = -minDragDomLeft
+        else if (left > maxDragDomLeft)
+          left = maxDragDomLeft
 
-        if (-top > minDragDomTop) {
-          top = -minDragDomTop;
-        } else if (top > maxDragDomTop) {
-          top = maxDragDomTop;
-        }
+        if (-top > minDragDomTop)
+          top = -minDragDomTop
+        else if (top > maxDragDomTop)
+          top = maxDragDomTop
 
         // 移动当前元素
-        dragDom.style.cssText += `;left:${left + styL}px;top:${top + styT}px;`;
+        dragDom.style.cssText += `;left:${left + styL}px;top:${top + styT}px;`
       }
 
       /**
@@ -99,15 +98,15 @@ export default function dragDirective(app: App) {
        * onmouseup 鼠标抬起触发事件
        */
       dragHeader.onmousedown = (e) => {
-        const obj = down(e, 'pc');
+        const obj = down(e, 'pc')
         document.onmousemove = (e) => {
-          move(e, 'pc', obj);
-        };
+          move(e, 'pc', obj)
+        }
         document.onmouseup = () => {
-          document.onmousemove = null;
-          document.onmouseup = null;
-        };
-      };
+          document.onmousemove = null
+          document.onmouseup = null
+        }
+      }
 
       /**
        * 移动端
@@ -116,17 +115,17 @@ export default function dragDirective(app: App) {
        * ontouchend 当移走手指时，触发ontouchend
        */
       dragHeader.ontouchstart = (e) => {
-        const obj = down(e, 'app');
+        const obj = down(e, 'app')
         document.ontouchmove = (e) => {
-          move(e, 'app', obj);
-        };
+          move(e, 'app', obj)
+        }
         document.ontouchend = () => {
-          document.ontouchmove = null;
-          document.ontouchend = null;
-        };
-      };
+          document.ontouchmove = null
+          document.ontouchend = null
+        }
+      }
     },
-  });
+  })
 }
 // export default function drag(app: App) {
 //   const components = [dragDirective];

@@ -1,13 +1,13 @@
-import type {App} from 'vue';
+import type { App } from 'vue'
 
-import dialogDrag from './dialogDrag';
-import inputDirective from './inputDirective';
+import dialogDrag from './dialogDrag'
+import inputDirective from './inputDirective'
 
 export default {
   install(app: App) {
-    const directives = [dialogDrag, inputDirective];
+    const directives = [dialogDrag, inputDirective]
     directives.forEach((v) => {
-      app.use(v);
-    });
+      app.use(v)
+    })
   },
-};
+}

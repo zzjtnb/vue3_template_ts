@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import {ElConfigProvider} from 'element-plus';
-import zhCn from 'element-plus/lib/locale/lang/zh-cn';
-import en from 'element-plus/lib/locale/lang/en';
+import { ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import en from 'element-plus/lib/locale/lang/en'
 
-import useStore from '@/store';
-const {user} = useStore();
+import useStore from '@/store'
+const { user } = useStore()
 
 const currentLocale = computed(() => {
-  return user.locale === 'zh-CN' ? zhCn : en;
-});
+  return user.locale === 'zh-CN' ? zhCn : en
+})
 // const {proxy} = getCurrentInstance() as any;
 </script>
 
 <template>
-  <el-config-provider :locale="currentLocale">
+  <ElConfigProvider :locale="currentLocale">
     <router-view />
-  </el-config-provider>
+  </ElConfigProvider>
 </template>
