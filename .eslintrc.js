@@ -5,9 +5,4 @@ module.exports = defineConfig({
   extends: [
     'zzjtnb',
   ],
-  ignorePatterns: [
-    '!.commitlintrc.cjs',
-    '!.stylelintrc.cjs',
-    '!.eslintrc.cjs',
-  ],
 })
